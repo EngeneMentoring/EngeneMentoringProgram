@@ -3,6 +3,15 @@ function deleteNote(noteId) {
     method: "POST",
     body: JSON.stringify({ noteId: noteId }),
   }).then((_res) => {
-    window.location.href = "/";
+    window.location.href = "/user";
+  });
+}
+
+function toggleNotePrivateness(private, noteId) {
+  fetch("/toggle-note", {
+    method: "POST",
+    body: JSON.stringify({ private: private, noteId: noteId }),
+  }).then((_res) => {
+    window.location.href = "/user";
   });
 }
