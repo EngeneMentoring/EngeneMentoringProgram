@@ -2,21 +2,11 @@
 
 ## Setup & Installtion
 
-Make sure you have the latest version of Python installed.
+Bro you should know how this works
 
-```bash
-git clone <repo-url>
-```
+## Running the website
 
-```bash
-pip install -r requirements.txt
-```
-
-## Running The App
-
-```bash
-python main.py
-```
+Run main.py or type in python main.py in vs-code terminal
 
 ## Viewing The App
 
