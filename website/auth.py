@@ -68,7 +68,7 @@ def sign_up():
 # Authentication
             s.login("programming@gear.ac.in", "gearpgm2020")
 # message to be sent
-            message = "Thangue for signing up"
+            message = "Thank you for signing up"
 
 # sending the mail
             s.sendmail("programming@gear.ac.in", email, message)

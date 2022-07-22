@@ -1,12 +1,22 @@
-# Engene Mentoring Program Website
+# Flask Web App Tutorial
 
 ## Setup & Installtion
 
-Bro you should know how this works
+Make sure you have the latest version of Python installed.
 
-## Running the website
+```bash
+git clone <repo-url>
+```
 
-Run main.py or type in python main.py in vs-code terminal
+```bash
+pip install -r requirements.txt
+```
+
+## Running The App
+
+```bash
+python main.py
+```
 
 ## Viewing The App
 
