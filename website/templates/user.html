@@ -5,6 +5,8 @@
     {% for note in user.notes %}
     <li class="list-group-item">
       {{ note.data }}
+      <button type="button" class="btn btn-primary", align="right", onClick="toggleNote(true, {{ note.id }})">Private</button>
+      <button type="button" class="btn btn-primary", align="right", onClick="toggleNote(false, {{ note.id }})">Public</button>
       <button type="button" class="close" onClick="deleteNote({{ note.id }})">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -15,8 +17,7 @@
     <textarea name="note" id="note" class="form-control"></textarea>
     <br />
     <div align="center">
-      <button type="submit" class="btn btn-primary">Add Public Note</button>
-      <button type="submit" class="btn btn-primary">Add Private Note</button>
+      <button type="submit" class="btn btn-primary">Add Note</button>
     </div>
   </form>
   {% endblock %}
