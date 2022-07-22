@@ -1,6 +1,6 @@
 # Engene Mentoring Program Website
 
-## Setup & Installtion
+## Setup & Installation
 
 You should know how to do this lmao
 
