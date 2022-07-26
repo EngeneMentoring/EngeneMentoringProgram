@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}User{% endblock %} {% block content
+  %}
+  <style>
+    .toggles{
+      float: right;
+   }
+   .cloze button{
+    z-index: 10;
+     padding-right: 25px;
+     padding-top: -20px;
+   }
+    .footer{
+      padding-top: 45px;
+    }
+    .enternote{
+      margin-block-start: 100px, 60px;
+      
+    }
+  </style>
+  <h1 align="center">Teacher's Notes</h1>
+  <ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+      {{ note.data }}
+      <div class="toggles">
+        <button type="button" class="btn btn-primary", onClick="toggleNote(true, {{ note.id }})">Private</button>
+        <button type="button" class="btn btn-primary", align="right", onClick="toggleNote(false, {{ note.id }})">Public</button>
+      </div>
+      <div class="cloze">
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  <form method="POST">
+    <div class="enternote">
+      <textarea name="note" id="note" class="form-control"></textarea>
+    </div>
+    <br />
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+  </form>
+  {% endblock %}
