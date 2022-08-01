@@ -1,3 +1,4 @@
+from datetime import datetime
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -9,6 +10,7 @@ class Note(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     private = db.Column(db.Boolean, default=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # capsuleId=db.column(db.string(1000))
 
 
 class User(db.Model, UserMixin):

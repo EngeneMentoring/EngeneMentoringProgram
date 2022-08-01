@@ -4,6 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 auth = Blueprint('auth', __name__)
@@ -68,7 +70,12 @@ def sign_up():
 # Authentication
             s.login("programming@gear.ac.in", "gearpgm2020")
 # message to be sent
-            message = "Thank you for signing up"
+            message = "Thank you for signing up into Engene Mentor..!"
+
+# reading html file
+            # html = open("mail.html")
+            # msg = MIMEText(html.read(), 'html')
+            # text = msg.as_string()
 
 # sending the mail
             s.sendmail("programming@gear.ac.in", email, message)

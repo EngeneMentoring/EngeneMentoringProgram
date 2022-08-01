@@ -1,15 +1,14 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
 
-<h1 align="center">Public Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
+<h1 align="center">Home</h1>
+<ul class="list-group list-group-flush" id="notes" style = "padding-top: 50px;">
   {% for note, user in notes %}
-  <li class="list-group-item">
+<!--  <li class="list-group-item"> -->
     {{ note }}
-  </li>
+<!-- </li> --> 
   <li class="list-group-item", align="right">
     {{ user }}
   </li>
-  <br>
   {% endfor %}
 </ul>
 {% endblock %}
