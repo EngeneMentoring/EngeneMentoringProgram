@@ -5,9 +5,9 @@
       float: right;
    }
    .cloze button{
-    z-index: 10;
-     padding-right: 25px;
-     padding-top: -20px;
+      z-index: 10;
+      padding-right: 25px;
+      padding-top: -20px;
    }
     .footer{
       padding-top: 45px;
@@ -69,12 +69,20 @@
     .slider.round:before {
       border-radius: 50%;
    }
+   .centered-note-element {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   </style>
   <h1 align="center">Teacher's Notes</h1>
   <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
     <li class="list-group-item">
-      <p>{{ note.data }}</p>
+      <div>
+        <p class="centered-note-element">{{ note.data }}</p>
+      </div>
       <div class="toggles">
         <button type="button" class="btn btn-primary", onClick="toggleNote(true, {{ note.id }})">Private</button>
         <button type="button" class="btn btn-primary", align="right", onClick="toggleNote(false, {{ note.id }})">Public</button>
