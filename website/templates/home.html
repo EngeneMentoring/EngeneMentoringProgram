@@ -1,24 +1,16 @@
-<style>
-  .centered-element {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-</style>
-
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
 
 <h1 align="center">Home</h1>
 <ul class="list-group list-group-flush" id="notes" style = "padding-top: 50px;">
-  {% for note, user in notes %}
+  {% for note, user, capsuleId in notes %}
 <!--  <li class="list-group-item"> -->
-  <div class="centered-note-element" style = "padding-top: 5px;">
     {{ note }}
-  </div>
 <!-- </li> --> 
   <li class="list-group-item", align="right">
     {{ user }}
+  </li>
+  <li class="list-group-item", align="right">
+    {{ capsuleId }}
   </li>
   {% endfor %}
 </ul>
