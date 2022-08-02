@@ -2,12 +2,15 @@
 
 <h1 align="center">Home</h1>
 <ul class="list-group list-group-flush" id="notes" style = "padding-top: 50px;">
-  {% for note, user in notes %}
+  {% for note, user, capsuleId in notes %}
 <!--  <li class="list-group-item"> -->
     {{ note }}
 <!-- </li> --> 
   <li class="list-group-item", align="right">
     {{ user }}
+  </li>
+  <li class="list-group-item", align="right">
+    {{ capsuleId }}
   </li>
   {% endfor %}
 </ul>
