@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block content%}
+
+<h1 align="center">Admin</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note, user, id, capsuleId in notes %}
+  <!--  <li class="list-group-item"> -->
+      {{ note }}
+  <!-- </li> --> 
+    <li class="list-group-item", align="right">
+      {{ user }}
+    </li>
+    <li class="list-group-item", align="right">
+      {{ capsuleId }}
+    </li>
+    <li class="list-group-item">
+      <div class="toggles">
+        <button type="button" class="btn btn-primary", onClick="toggleNoteGreenness(true, {{ id }})" style ='background-color:green;'>ACCEPT</button>
+        <button type="button" class="btn btn-primary", align="right", onClick="toggleNoteGreenness(false, {{ id }})" style ='background-color:red;'>REJECT</button>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
