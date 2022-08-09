@@ -1,9 +1,12 @@
+from pickle import FALSE
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 auth = Blueprint('auth', __name__)
@@ -41,6 +44,7 @@ def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
         first_name = request.form.get('firstName')
+        school_name = request.form.get('schoolName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
@@ -56,11 +60,16 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(
+            if email=="saikrish.22087@gear.ac.in":
+                admin=True
+            else:
+                admin=False
+            new_user = User(email=email, first_name=first_name, school_name=school_name, admin=admin, password=generate_password_hash(
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
+
             flash('Account created!', category='success')
 # creates SMTP session
             s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -68,7 +77,12 @@ def sign_up():
 # Authentication
             s.login("programming@gear.ac.in", "gearpgm2020")
 # message to be sent
-            message = "Thangue for signing up"
+            message = "Thank you for signing up into Engene Mentor..!"
+
+# reading html file
+            # html = open("mail.html")
+            # msg = MIMEText(html.read(), 'html')
+            # text = msg.as_string()
 
 # sending the mail
             s.sendmail("programming@gear.ac.in", email, message)

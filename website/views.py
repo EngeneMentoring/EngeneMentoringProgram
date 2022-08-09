@@ -1,18 +1,24 @@
+from datetime import datetime
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Note, User
 from . import db
 import json
+import codecs
 
 views = Blueprint('views', __name__)
 
-
 @views.route('/', methods=['GET'])
+@login_required
 def home():
     all_notes = Note.query.order_by(Note.date).all()
     notes_with_users = []
     for note in all_notes:
-        notes_with_users.append((note, User.query.get(note.user_id).first_name))
+        if not note.private and note.adminGreened:
+            user = User.query.get(note.user_id).first_name
+            user = '~' + user
+            notes_with_users.append((codecs.decode(note.data, 'unicode_escape'), user, note.capsuleId)) # something changes the notes into r strings which makes it ignore
+                                                                                        # the \n characters
     return render_template("home.html", user=current_user, notes=notes_with_users)
 
 @views.route('/user', methods=['GET', 'POST'])
@@ -24,17 +30,31 @@ def user():
         if len(note) < 1:
             flash('Note is too short!', category='error')
         else:
-            new_note = Note(data=note, user_id=current_user.id)
+            new_note = Note(data=note, user_id=current_user.id, capsuleId=current_user.first_name[0:2] + datetime.utcnow().strftime("%d-%m-%Y") + current_user.school_name.replace(' ', '_'))
             db.session.add(new_note)
             db.session.commit()
             flash('Note added!', category='success')
+            flash('Careful..! If you reload the page without clicking on any of these 1 button {Private/Public} It is gonna multiply the notes', category="error")
 
     return render_template("user.html", user=current_user)
+@views.route('/admin',methods=['GET','POST'])
+@login_required
+def admin():
+    all_notes = Note.query.order_by(Note.date).all()
+    notes_with_users = []
+    for note in all_notes:
+        if not note.private:
+            user = User.query.get(note.user_id).first_name
+            user = '~' + user
+            notes_with_users.append((codecs.decode(note.data, 'unicode_escape'), user, note.id, note.capsuleId)) # something changes the notes into r strings which makes it ignore
+                                                                                        # the \n characters
+    return render_template("admin.html", user=current_user, notes=notes_with_users)
+
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
+    data = json.loads(request.data)
+    noteId = data['noteId']
     note = Note.query.get(noteId)
     if note:
         if note.user_id == current_user.id:
@@ -43,14 +63,28 @@ def delete_note():
 
     return jsonify({})
 
-@views.route('/toggle-note', methods=['POST'])
-def toggle_note():
+@views.route('/toggle-note-private', methods=['POST'])
+def toggle_note_private():
     data = json.loads(request.data)
     noteId = data['noteId']
     note = Note.query.get(noteId)
+    private = data['private']
     if note:
         if note.user_id == current_user.id:
-            note.private = data['private']
+            note.private = private
+            db.session.commit()
+
+    return jsonify({})
+
+@views.route('/toggle-note-green', methods=['POST'])
+def toggle_note_green():
+    data = json.loads(request.data)
+    noteId = data['noteId']
+    note = Note.query.get(noteId)
+    green = data['green']
+    if note:
+        if current_user.admin:
+            note.adminGreened = green
             db.session.commit()
 
     return jsonify({})
