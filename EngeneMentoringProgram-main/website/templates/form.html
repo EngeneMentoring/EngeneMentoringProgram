@@ -1,0 +1,206 @@
+<body>
+<!--{% extends "base.html" %} {% block title %}Capsule Submission Form{% endblock %} {% block
+    content %}-->
+    <form method="POST">
+      <h3 align="center">Capsule Submission Form</h3>
+      <div class="form-group">
+        <label for="email">Mentor Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter your registered name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="firstName">Subject</label>
+        <select name="subject" id="subjects">
+          <option value="maths">Mathematics</option>
+          <option value="english">English</option>
+          <option value="physics">Physics</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="biology">Biology</option>
+          <option value="history">History</option>
+          <option value="geography">Geography</option>
+          <option value="civics">Civics</option>
+          <option value="commerce">Commerce</option>
+          <option value="gk">General Knowledge</option>
+
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="schoolName">Topic</label>
+        <input
+          type="text"
+          class="form-control"
+          id="schoolName"
+          name="schoolName"
+          placeholder="Topic of submission"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Phone number ">Subtopic</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="Subtopic of submission"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Age">Age group</label>
+        <select name="agegroup" id="age">
+          <option value="6-8">6-8 years</option>
+          <option value="9-12">9-12 years</option>
+          <option value="12-15">12-15 years</option>
+          <option value="15-18">15-18 years</option>
+          <option value="18+">18+ years</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Gender">Concepts Addressed</label>
+        <input
+          type="text"
+          class="form-control"
+          id="gender"
+          name="gender"
+          placeholder="Concepts addressed"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password1">Intent</label>
+        <select name = 'intent' id="'intent">
+          <option value="handling">Handling misconceptions</option>
+          <option value="introducing">Introducing a concept</option>
+          <option value="reinforcing">Reinforcing a concept</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="password2">Method used to identify the intent</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password2"
+          name="password2"
+          placeholder="**not sure what to put here**"
+        />
+      </div>
+      <div class="form-group">
+        <label for="strategy">Instructional strategies</label>
+        <input
+          type="text"
+          class="form-control"
+          id="strategy"
+          name="strategy"
+          placeholder="Execution in the classroom"
+        />
+      </div>
+      <div class="form-group">
+        <label for="preparation">Preparation</label>
+        <input
+          type="text"
+          class="form-control"
+          id="preparation"
+          name="preparation"
+          placeholder=""
+        />
+      </div>
+      <div class="form-group">
+        <label for="aids">Aids Used</label>
+        <input
+          type="text"
+          class="form-control"
+          id="aids"
+          name="aids"
+          placeholder=""
+        />
+      </div>
+      <div class="form-group">
+        <label for="outcome">Outcome/Impact Of The Activity</label>
+        <input
+          type="text"
+          class="form-control"
+          id="outcome"
+          name="outcome"
+          placeholder=""
+        />
+      </div>
+      <div class="form-group">
+        <label for="diagrams">Diagrams (if any)</label>
+        <input
+          type="file"
+          class="form-control"
+          id="diagrams"
+          name="diagrams"
+        />
+      </div>
+      <div class="form-group">
+        <label for="formulas">Formulas (if any)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="formulas"
+          name="formulas"
+          placeholder=""
+        />
+        <div class="form-group">
+          <label for="vidaud">Video/Audio (if any)</label>
+          <input
+            type="file"
+            class="form-control"
+            id="vidaud"
+            name="vidaud"
+            placeholder=""
+          />
+      <div class="form-group">
+        <label for="inspiration">Inspiration</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inspiration"
+          name="inspiration"
+          placeholder=""
+        />
+      <div class="form-group">
+        <label for="reference">Reference</label>
+        <input
+          type="text"
+          class="form-control"
+          id="reference"
+          name="reference"
+          placeholder="Books/Journals/Sites"
+        />
+        <div class="form-group">
+          <label for="further">Further Reading:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="further"
+            name="further"
+            placeholder=""
+          />
+          <div class="form-group">
+            <label for="comment">Any other comment</label>
+            <input
+              type="text"
+              class="form-control"
+              id="comment"
+              name="comment"
+              placeholder=""
+            />
+            <div class="form-group">
+              <label for="keywords">Keywords (for search)</label>
+              <input
+                type="text"
+                class="form-control"
+                id="keywords"
+                name="keywords"
+                placeholder=""
+              />
+      <br />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock %}
+</body>
