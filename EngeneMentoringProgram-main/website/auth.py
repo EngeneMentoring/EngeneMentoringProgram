@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 
 auth = Blueprint('auth', __name__)
 
-admin_users = ["saikrish.22087@gear.ac.in", "yadunandana.22020@gear.ac.in", "arush.22136@gear.ac.in", "shawn.22078@gear.ac.in", "programming@gear.ac.in"]
+admin_users = ["saikrish.22087@gear.ac.in", "arush.22136@gear.ac.in", "shawn.22078@gear.ac.in", "programming@gear.ac.in"]
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -78,7 +78,7 @@ def sign_up():
             s.starttls()
 # Authentication
             s.login("programming@gear.ac.in", "gearpgm2020")
-# message to be sent
+# message 
             message = "Thank you for signing up on Engene Mentor! We hope you have a pleasant experience ahead. \n \n \n \n For any queries, please contact programming@gear.ac.in"
 
 # reading html file
